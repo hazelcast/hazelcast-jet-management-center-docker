@@ -6,7 +6,7 @@ You can check [Hazelcast Jet Documentation](http://docs.hazelcast.org/docs/jet/l
 
 ## Quick Start
 
-You can launch Hazelcast Jet Management Center by simply running the following command. please check available versions for $HAZELCAST_JET_MANAGEMENT_CENTER on [Docker Store](https://store.docker.com/community/images/hazelcast/hazelcast-jet-management-center/tags)
+You can launch Hazelcast Jet Management Center by simply running the following command. Please check available versions for $HAZELCAST_JET_MANAGEMENT_CENTER on [Docker Store](https://store.docker.com/community/images/hazelcast/hazelcast-jet-management-center/tags)
 
 ```
 docker run -p 8081:8081 hazelcast/hazelcast-jet-management-center:$HAZELCAST_JET_MANAGEMENT_CENTER
