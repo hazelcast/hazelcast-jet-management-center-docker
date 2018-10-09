@@ -1,8 +1,8 @@
 FROM openjdk:8u171-jre-alpine
 
-ENV MC_VERSION 0.7-SNAPSHOT
+ENV MC_VERSION 0.7
 ENV MC_HOME /opt/hazelcast-jet
-ENV MC_HTTP_PORT 8082
+ENV MC_HTTP_PORT 8081
 
 ARG HZ_KUBE_VERSION=1.2
 ARG HZ_EUREKA_VERSION=1.0.2
@@ -66,6 +66,7 @@ ENV MAX_HEAP_SIZE ""
 
 ENV JAVA_OPTS ""
 ENV CLASSPATH ""
+ENV MC_LICENSE_KEY ""
 
 EXPOSE ${MC_HTTP_PORT}
 
@@ -75,6 +76,7 @@ CMD ["bash", "-c", "set -euo pipefail \
       && if [[ \"x${JAVA_OPTS}\" != \"x\" ]]; then export JAVA_OPTS=\"${JAVA_OPTS_DEFAULT} ${JAVA_OPTS}\"; else export JAVA_OPTS=\"${JAVA_OPTS_DEFAULT}\"; fi \
       && if [[ \"x${MIN_HEAP_SIZE}\" != \"x\" ]]; then export JAVA_OPTS=\"${JAVA_OPTS} -Xms${MIN_HEAP_SIZE}\"; fi \
       && if [[ \"x${MAX_HEAP_SIZE}\" != \"x\" ]]; then export JAVA_OPTS=\"${JAVA_OPTS} -Xms${MAX_HEAP_SIZE}\"; fi \
+      && if [[ \"x${MC_LICENSE_KEY}\" != \"x\" ]]; then export JAVA_OPTS=\"${JAVA_OPTS} -Djet.licenseKey=${MC_LICENSE_KEY}\"; fi \
       && echo \"########################################\" \
       && echo \"# JAVA_OPTS=${JAVA_OPTS}\" \
       && echo \"# CLASSPATH=${CLASSPATH}\" \
