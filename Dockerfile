@@ -1,6 +1,6 @@
 FROM openjdk:8u171-jre-alpine
 
-ENV MC_VERSION 0.7
+ENV MC_VERSION 0.7.2
 ENV MC_HOME /opt/hazelcast-jet
 ENV MC_HTTP_PORT 8081
 
