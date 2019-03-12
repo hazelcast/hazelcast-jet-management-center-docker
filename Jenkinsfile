@@ -8,7 +8,7 @@ pipeline {
 	stage('Building image') {
       steps{
         script {
-          dockerImage = docker.build(registry + ":latest-snapshot", "--build-arg MC_VERSION=$JET_VERSION ." )
+          dockerImage = docker.build(registry + ":latest-snapshot", "--force-rm --no-cache --build-arg MC_VERSION=$JET_VERSION ." )
         }
       }
     }
