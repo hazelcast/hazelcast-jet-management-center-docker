@@ -24,18 +24,68 @@ Hazelcast Jet Management Center uses Hazelcast Jet Client to discover the Hazelc
 
 ## Using Custom Hazelcast Jet Client XML Configuration File
 
-If you need to configure Hazelcast with your own `hazelcast-client.xml`, you need to mount the folder that has `hazelcast-client.xml`. You also need to pass the `hazelcast-client.xml` file path to `jet.clientXml` in `JAVA_OPTS` parameter. Please see the following example:
+If you need to configure Hazelcast with your own `hazelcast-client.xml`, you need to mount the folder that has `hazelcast-client.xml`. You also need to pass the `hazelcast-client.xml` file path as `MC_CLIENT_CONFIG` environment variable. Please see the following example:
 
 ```
-$ docker run -p 8081:8081 -e JAVA_OPTS="-Djet.clientXml=/opt/hazelcast/config_ext/hazelcast-client.xml" -v PATH_TO_LOCAL_CONFIG_FOLDER:/opt/hazelcast/config_ext hazelcast/hazelcast-jet-management-center
+$ docker run -p 8081:8081 -e MC_CLIENT_CONFIG="/opt/hazelcast/config_ext/hazelcast-client.xml" -v PATH_TO_LOCAL_CONFIG_FOLDER:/opt/hazelcast/config_ext hazelcast/hazelcast-jet-management-center:$HAZELCAST_JET_MANAGEMENT_CENTER
 ```
 
 ## License Key Configuration
 
-Hazelcast Jet Management Center free trial is limited to a single node. If you have a bigger cluster you can [apply for a trial](https://hazelcast.com/hazelcast-enterprise-download/). To provide a license key to docker container the system property `jet.licenseKey` can be used:
+Hazelcast Jet Management Center free trial is limited to a single node. If you have a bigger cluster you can [apply for a trial](https://hazelcast.com/hazelcast-enterprise-download/). To provide a license key to docker container `MC_LICENSE_KEY` environment variable can be used:
 
 ```
-docker run -e JAVA_OPTS='-Djet.licenseKey=<your-license-key>' -p 8081:8081 hazelcast/hazelcast-jet-management-center:$MANAGEMENT_CENTER
+docker run -e MC_LICENSE_KEY=<your-license-key> -p 8081:8081 hazelcast/hazelcast-jet-management-center:$HAZELCAST_JET_MANAGEMENT_CENTER
+```
+
+## Username and Password Configuration
+
+Basic username and password authentication with a single user can be configured on Hazelcast Jet Management Center to prevent unauthorized parties to achieve unexpected actions on the Hazelcast Jet Cluster.
+
+The username and password can be configured via environment variables like following;
+
+```
+docker run -e MC_USER=username MC_PASSWORD=password -p 8081:8081 hazelcast/hazelcast-jet-management-center:$HAZELCAST_JET_MANAGEMENT_CENTER
+```
+
+## Using Custom Properties File
+
+Hazelcast Jet Management Center can be configured via a properties file called
+`application.properties`.
+
+The ZIP packaging includes an `application.properties` file that you can
+override the configuration properties.
+
+The default content of the `application.properties` file can be seen below;
+
+```properties
+# path for client configuration file (yaml or xml)
+jet.clientConfig=
+# License key for management center
+jet.licenseKey=
+
+# How many seconds of data to retain for each metric
+jet.metrics.retentionSecs=3600
+
+# User Authentication Configuration
+spring.security.user.name=admin
+spring.security.user.password=admin
+
+# Sever Configuration Options
+# server.port: 8081
+
+# SSL configuration options for the web server
+# server.ssl.key-store: keystore.p12
+# server.ssl.key-store-password: mypassword
+# server.ssl.keyStoreType: PKCS12
+# server.ssl.keyAlias: tomcat
+```
+
+To pass a custom properties file to the Hazelcast Jet Management Center, `MC_APPLICATION_CONFIG` environment 
+variable can be used like following:
+
+```
+$ docker run -p 8081:8081 -e MC_APPLICATION_CONFIG="/opt/hazelcast/config_ext/application.properties" -v PATH_TO_LOCAL_PROPERTIES_FOLDER:/opt/hazelcast/config_ext hazelcast/hazelcast-jet-management-center:$HAZELCAST_JET_MANAGEMENT_CENTER
 ```
 
 ## Extending CLASSPATH with new jars or files
@@ -43,7 +93,7 @@ docker run -e JAVA_OPTS='-Djet.licenseKey=<your-license-key>' -p 8081:8081 hazel
 If you have custom jars or files to put into classpath of docker container, you can simply use `CLASSPATH` environment variable and pass it via `docker run` command. Please see the following example:
 
 ```
-$ docker run -e CLASSPATH="/opt/hazelcast-jet/CLASSPATH_EXT/" -v PATH_TO_LOCAL_CONFIG_FOLDER:/opt/hazelcast/CLASSPATH_EXT hazelcast/hazelcast-jet-management-center
+$ docker run -e CLASSPATH="/opt/hazelcast-jet/CLASSPATH_EXT/" -v PATH_TO_LOCAL_CONFIG_FOLDER:/opt/hazelcast/CLASSPATH_EXT hazelcast/hazelcast-jet-management-center:$HAZELCAST_JET_MANAGEMENT_CENTER
 ```
 
 # Kubernetes Deployment
