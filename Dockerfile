@@ -1,6 +1,6 @@
 FROM openjdk:8u171-jre-alpine
 
-ENV MC_VERSION 3.0-SNAPSHOT
+ARG MC_VERSION=3.0-SNAPSHOT
 ENV MC_HOME /opt/hazelcast-jet-management-center
 
 ARG HZ_KUBE_VERSION=1.3.1
