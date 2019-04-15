@@ -1,4 +1,4 @@
-FROM openjdk:8u171-jre-alpine
+FROM openjdk:8u201-jre-alpine
 
 ENV MC_VERSION 3.0-SNAPSHOT
 ENV MC_HOME /opt/hazelcast-jet-management-center
