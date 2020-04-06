@@ -41,10 +41,10 @@ objects:
   data:
     hazelcast-client.yaml: |-
         hazelcast-client:
+          cluster-name: jet
           network:
-            join:
-              kubernetes:
-                enabled: true
+            kubernetes:
+              enabled: true
 - apiVersion: apps/v1
   kind: Deployment
   metadata:
@@ -63,7 +63,7 @@ objects:
       spec:
         containers:
         - name: hazelcast-jet-management-center
-          image: registry.connect.redhat.com/hazelcast/hazelcast-jet-management-center-4:<image-version>
+          image: image-registry.openshift-image-registry.svc:5000/jet-operator/mc-image@sha256:9510ed748c0a9d96d3e42aeb8ed5f74d26c4476622803ba3aba761eded06c12c
           ports:
             - name: mc-port
               containerPort: 8081
@@ -111,7 +111,6 @@ objects:
     name: hazelcast-jet-management-center-service
   spec:
     type: LoadBalancer
-    clusterIP: None
     selector:
       app: hazelcast-jet-management-center
     ports:
