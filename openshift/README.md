@@ -63,7 +63,7 @@ objects:
       spec:
         containers:
         - name: hazelcast-jet-management-center
-          image: image-registry.openshift-image-registry.svc:5000/jet-operator/mc-image@sha256:9510ed748c0a9d96d3e42aeb8ed5f74d26c4476622803ba3aba761eded06c12c
+          image: registry.connect.redhat.com/hazelcast/hazelcast-jet-management-center-4:<version>
           ports:
             - name: mc-port
               containerPort: 8081
