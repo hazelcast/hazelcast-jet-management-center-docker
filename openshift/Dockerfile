@@ -18,11 +18,11 @@ ARG MC_INSTALL_JAR="hazelcast-jet-management-center-${MC_VERSION}.jar"
 
 ENV MC_RUNTIME "${MC_INSTALL_DIR}/${MC_INSTALL_JAR}"
 
-LABEL name="hazelcast/hazelcast-jet-management-center-rhel" \
+LABEL name="hazelcast/hazelcast-jet-management-center" \
         vendor="Hazelcast, Inc." \
         version="8.1" \
         architecture="x86_64" \
-        release="${JET_VERSION}" \
+        release="${MC_VERSION}" \
         url="http://www.hazelcast.com" \
         summary="Hazelcast Jet Management Center Openshift Image, certified to RHEL 8" \
         description="Starts a Hazelcast Jet Management Center instance to monitor and manage Hazelcast Jet based on kubernetes discovery inside Openshift" \
