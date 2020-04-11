@@ -6,8 +6,8 @@ overall state of your clusters, you can also analyze and browse your
 jobs in detail.
 
 You can check 
-[Hazelcast Jet Documentation](http://docs.hazelcast.org/docs/jet/latest-dev/manual)
-and [Hazelcast Jet Management Center Documentation]() for more 
+[Hazelcast Jet Documentation](https://jet-start.sh/docs/next/get-started/intro)
+and [Hazelcast Jet Management Center Documentation](https://jet-start.sh/docs/enterprise/management-center) for more 
 information.
 
 ## Quick Start
