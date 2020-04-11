@@ -7,7 +7,7 @@ jobs in detail.
 
 You can check 
 [Hazelcast Jet Documentation](https://jet-start.sh/docs/next/get-started/intro)
-and [Hazelcast Jet Management Center Documentation](https://jet-start.sh/docs/enterprise/management-center) for more 
+and [Hazelcast Jet Management Center Documentation](https://jet-start.sh/docs/next/enterprise/management-center) for more 
 information.
 
 ## Quick Start
