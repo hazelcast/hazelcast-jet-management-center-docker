@@ -1,4 +1,4 @@
-FROM openjdk:8u201-jre-alpine
+FROM openjdk:11.0.7-jre-slim
 
 ARG MC_VERSION=4.1
 ENV MC_HOME /opt/hazelcast-jet-management-center
@@ -16,8 +16,11 @@ ARG HZ_AWS_API_JAR="hazelcast-aws-${HZ_AWS_VERSION}.jar"
 ENV MC_RUNTIME "${MC_INSTALL_DIR}/${MC_INSTALL_JAR}"
 
 # Install curl to download management center
-RUN apk add --no-cache bash curl \
- && rm -rf /var/cache/apk/*
+RUN apt-get update && apt-get -y install \
+ bash \
+ curl \
+ unzip \
+ && apt-get clean
 
 # chmod allows running container as non-root with `docker run --user` option
 RUN mkdir -p ${MC_HOME}/lib \
