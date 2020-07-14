@@ -73,7 +73,7 @@ ENV CLASSPATH ""
 ENV CLI_ARGS ""
 ENV MC_HTTP_PORT 8081
 ENV MC_LICENSE_KEY ""
-ENV MC_CLIENT_CONFIG "${MC_INSTALL_DIR}/hazelcast-client.xml"
+ENV MC_CLIENT_CONFIG ""
 ENV MC_APPLICATION_CONFIG ""
 ENV MC_USER ""
 ENV MC_PASSWORD ""
@@ -93,7 +93,7 @@ CMD ["bash", "-c", "set -euo pipefail \
       && if [[ \"x${MC_APPLICATION_CONFIG}\" != \"x\" ]]; then export CLI_ARGS=\"${CLI_ARGS} -f ${MC_APPLICATION_CONFIG}\"; fi \
       && if [[ \"x${MC_USER}\" != \"x\" ]]; then export CLI_ARGS=\"${CLI_ARGS} -U ${MC_USER}\"; fi \
       && if [[ \"x${MC_PASSWORD}\" != \"x\" ]]; then export CLI_ARGS=\"${CLI_ARGS} -P ${MC_PASSWORD}\"; fi \
-      && if [[ \"x${JET_MEMBER_ADDRESS}\" != \"x\" ]]; then sed -i \"s/127.0.0.1/${JET_MEMBER_ADDRESS}/g;\" ${MC_INSTALL_DIR}/hazelcast-client.xml; fi \
+      && if [[ \"x${JET_MEMBER_ADDRESS}\" != \"x\" ]]; then export CLI_ARGS=\"${CLI_ARGS} -c ${MC_INSTALL_DIR}/hazelcast-client.xml\"; sed -i \"s/127.0.0.1/${JET_MEMBER_ADDRESS}/g;\" ${MC_INSTALL_DIR}/hazelcast-client.xml; fi \
       && echo \"########################################\" \
       && echo \"# JAVA_OPTS=${JAVA_OPTS}\" \
       && echo \"# CLASSPATH=${CLASSPATH}\" \
