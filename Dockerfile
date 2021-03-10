@@ -1,6 +1,6 @@
 FROM openjdk:11.0.7-jre-slim
 
-ARG MC_VERSION=4.3
+ARG MC_VERSION=4.3.1
 ENV MC_HOME /opt/hazelcast-jet-management-center
 
 ARG HZ_KUBE_VERSION=2.0.1

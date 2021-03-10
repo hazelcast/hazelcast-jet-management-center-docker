@@ -4,7 +4,7 @@ MAINTAINER Hazelcast, Inc. Jet Integration Team <info@hazelcast.com>
 ENV USER_NAME="jet" \
         USER_UID=10001
 
-ARG MC_VERSION=4.3
+ARG MC_VERSION=4.3.1
 ENV MC_HOME /opt/hazelcast-jet-management-center
 
 ARG HZ_KUBE_VERSION=2.0.1
