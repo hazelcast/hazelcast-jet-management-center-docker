@@ -29,7 +29,7 @@ WORKDIR ${MC_HOME}
 
 # Prepare Management Center
 RUN curl -svf -o ${MC_HOME}/${MC_INSTALL_ZIP} \
-         -L https://download.hazelcast.com/hazelcast-jet-management-center/${MC_INSTALL_ZIP} \
+         -L https://repository.hazelcast.com/download/jet-management-center/${MC_INSTALL_ZIP} \
  && unzip ${MC_INSTALL_ZIP} \
       -x ${MC_INSTALL_NAME}/manual/* \
  && rm -rf ${MC_INSTALL_ZIP}
